@@ -5,6 +5,7 @@ const database = require("./db/db.json");
 const fs = require("fs");
 // Helper method for generating unique ids
 const uuid = require("./helpers/uuid");
+const PORT = process.env.PORT || 3001;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -63,4 +64,4 @@ app.post("/api/notes", (req, res) => {
 	}
 });
 
-app.listen(3001, () => console.log("Express Server on port 3001!"));
+app.listen(PORT, () => console.log("Express Server on port 3001!"));
