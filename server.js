@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
 const app = express();
-const database = require("./Develop/db/db.json");
+const database = require("./db/db.json");
 const fs = require("fs");
 // Helper method for generating unique ids
 const uuid = require("./helpers/uuid");
@@ -9,19 +9,23 @@ const uuid = require("./helpers/uuid");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(express.static("Develop/public"));
+app.use(express.static("public"));
 
 //GET home (index.html)
 app.get("/", (req, res) => {
-	res.sendFile(path.join(__dirname, "./develop/public/index.html"));
+	res.sendFile(path.join(__dirname, "./public/index.html"));
 });
 //GET notes.html
 app.get("/notes", (req, res) => {
-	res.sendFile(path.join(__dirname, "./develop/public/notes.html"));
+	res.sendFile(path.join(__dirname, "./public/notes.html"));
 });
 
 //GET data from db.json
-app.get("/api/notes", (req, res) => res.json(database));
+app.get("/api/notes", (req, res) => {
+	console.log(database);
+	fs.readFile();
+	res.json(database);
+});
 
 //POST request to add a review
 app.post("/api/notes", (req, res) => {
@@ -35,12 +39,13 @@ app.post("/api/notes", (req, res) => {
 		const newNotes = {
 			title,
 			text,
-			note_id: uuid(),
+			id: uuid(),
 		};
 		// Convert the data to a string so we can save it
 		const noteString = JSON.stringify(newNotes);
 		// Write the string to a file
-		fs.writeFile(`Develop/db/db.json`, noteString, (err) =>
+
+		fs.writeFile(`./db/db.json`, noteString, (err) =>
 			err
 				? console.error(err)
 				: console.log(
