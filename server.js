@@ -58,4 +58,4 @@ app.post("/api/notes", (req, res) => {
 	}
 });
 
-// app.listen(3001, () => console.log("Express Server on port 3001!"));
+app.listen(3001, () => console.log("Express Server on port 3000!"));
