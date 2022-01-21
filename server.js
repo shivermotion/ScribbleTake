@@ -24,7 +24,7 @@ app.get("/notes", (req, res) => {
 //GET data from db.json
 app.get("/api/notes", (req, res) => {
 	console.log(database);
-	fs.readFile();
+	// fs.appendFile();
 	res.json(database);
 });
 
@@ -42,8 +42,13 @@ app.post("/api/notes", (req, res) => {
 			text,
 			id: uuid(),
 		};
+		// fs.readFile(, "utf8", (err, data) => {
+		// 	console.log(JSON.parse(data) + "database");
+		// });
+
 		// Convert the data to a string so we can save it
-		const noteString = JSON.stringify(newNotes);
+		database.push(newNotes);
+		const noteString = JSON.stringify(database);
 		// Write the string to a file
 
 		fs.writeFile(`./db/db.json`, noteString, (err) =>
