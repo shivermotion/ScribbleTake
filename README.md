@@ -1,6 +1,7 @@
 # Note Taker
 
-![image](public\assets\scribbletakemock.png)
+![scribbletakemock](https://user-images.githubusercontent.com/75548830/150454624-54783132-cd8e-4925-a29e-0d374314dc26.png)
+
 
 Heroku Deployment: https://still-shore-58383.herokuapp.com/
 
